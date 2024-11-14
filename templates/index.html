@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông tin xe</title>
+  <style>
+    /* Căn chỉnh body với hình nền */
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      background-image: url("/static/images/hinhanhxe1.jpg");
+
+    }
+
+    /* Header */
+    header {
+      background-color: rgba(0, 123, 255, 0.8);
+      width: 100%;
+      padding: 20px 0;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      animation: fadeIn 2s;
+    }
+
+    /* Container cho form */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      animation: slideIn 1.5s;
+    }
+
+    /* Tiêu đề */
+    .header {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+      width: 100%;
+    }
+
+    /* Căn chỉnh form group */
+    .form-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    /* Định dạng nhãn và input */
+    .form-group label {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .form-group input, .form-group select {
+      width: 60%;
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    /* Nút submit */
+    .submit-button input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      animation: bounceIn 1s;
+    }
+
+    .submit-button input[type="submit"]:hover {
+      background-color: #0056b3;
+      box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 10px 0;
+      width: 100%;
+      font-size: 14px;
+      box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Hiệu ứng chuyển động */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Dự Báo Giá Xe</h1>
+  </header>
+
+  <!-- Form container -->
+  <div class="container">
+    <h1 class="header">Thông tin xe</h1>
+    <form action="/predict" method="post">
+      <div class="form-group">
+        <label for="year">Năm sản xuất :</label>
+        <input type="number" step="any" name="year" required>
+      </div>
+      <div class="form-group">
+        <label for="transmission">Loại hộp số:</label>
+        <select name="transmission" required>
+          <option value="" disabled selected>Chọn loại hộp số</option>
+          <option value="Automatic">Automatic</option>
+          <option value="Manual">Manual</option>
+          <option value="Semi-Auto">Semi-Automatic</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mileage">Tổng số km đã đi được:</label>
+        <input type="number" step="any" name="mileage" required>
+      </div>
+      <div class="form-group">
+        <label for="fuelType">Loại nhiên liệu:</label>
+        <select name="fuelType" required>
+          <option value="" disabled selected>Chọn loại nhiên liệu</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="Petrol">Petrol</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="automaker">Hãng xe:</label>
+        <select name="automaker" required>
+          <option value="" disabled selected>Chọn loại hãng xe</option>
+          <option value="toyota">Toyota</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tax">Thuế:</label>
+        <input type="number" step="any" name="tax" required>
+      </div>
+      <div class="form-group">
+        <label for="mpg">MPG:</label>
+        <input type="number" step="any" name="mpg" required>
+      </div>
+      <div class="form-group">
+        <label for="engineSize">Kích thước động cơ:</label>
+        <input type="number" step="any" name="engineSize" required>
+      </div>
+      <div class="form-group">
+        <label for="isols">Chọn mô hình:</label>
+        <select name="isols" required>
+          <option value="" disabled selected>Chọn mô hình</option>
+          <option value="machine learning">Hồi quy tuyến tính</option>
+        </select>
+      </div>
+      <div class="submit-button">
+        <input type="submit" value="Dự báo">
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>2024 Dự Báo Giá Xe | NHÓM SIU SIU</p>
+  </footer>
+</body>
+</html>
